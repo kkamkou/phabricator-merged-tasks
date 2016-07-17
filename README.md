@@ -4,7 +4,7 @@ Phabricator merged tasks
 ## How it works
 - Normally, a team uses some kind of [pull request review](https://en.wikipedia.org/wiki/Distributed_version_control#Pull_requests) technique.
   The final step is an automatic merging. This step creates a new merge commit with pre-defined template (i.e. `Merged in T1234 (pull request #4321) T1234`).
-- Python script finds such commits and it generates a changelog referencing the ticket.
+- Python script finds such commits and it generates a changelog referencing the ticket according a branch.
 - Also it is possible to add a project (label) to a specific ticket, just to query it later.
 
 ## Requirements
