@@ -60,6 +60,6 @@ if [ ! -z "${4}" ]; then
   done
 fi
 
-echo "\nDone."
+echo $'\n'"Done."
 
 exit 0
