@@ -31,12 +31,13 @@ def repositories(obj):
 
 @cli.command()
 @click.option('--branch', help='Branch to analyze', default='master')
+@click.option('--regexp', help='RegExp for the merge commit', default='^Merged in T([\d]+)')
 @click.option(
     '--since', help='Generate since particular %Y-%m-%d',
     default=(datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
 )
 @click.pass_obj
-def changelog(obj, branch, since):
+def changelog(obj, branch, regexp, since):
     since = datetime.strptime(since, '%Y-%m-%d')
     checkpoint = int(since.strftime("%s"))
 
@@ -55,7 +56,7 @@ def changelog(obj, branch, since):
             if int(commit['epoch']) < checkpoint:
                 break
 
-            match = re.search('^Merged in T([\d]+)', commit['summary'])
+            match = re.search(regexp, commit['summary'])
             if match and match.group(1) not in tickets:
                 tickets[match.group(1)] = commit['identifier']
 
